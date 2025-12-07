@@ -1,3 +1,28 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-bg",
+      "description": "Abstract architectural building",
+      "imageUrl": "https://images.unsplash.com/photo-1632667680404-572c57873c21?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhcmNoaXRlY3R1cmUlMjBhYnN0cmFjdHxlbnwwfHx8fDE3NjQ5OTE1NjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "architecture abstract"
+    },
+    {
+      "id": "project-void",
+      "description": "A dark, basalt rock formation in Iceland, resembling a minimalist structure.",
+      "imageUrl": "https://images.unsplash.com/photo-1575584870919-371081b1e482?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YmFzYWx0JTIwaWNlbGFuZHxlbnwwfHx8fDE3NjUwOTk1NjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "basalt iceland"
+    },
+    {
+      "id": "project-spire",
+      "description": "A tall, slender skyscraper piercing the clouds in California.",
+      "imageUrl": "https://images.unsplash.com/photo-1568653256158-f42f6d252ef5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxza3lzY3JhcGVyJTIwdmVydGljYWx8ZW58MHx8fHwxNzY1MDk5NTYzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "skyscraper vertical"
+    },
+    {
+      "id": "project-anchor",
+      "description": "A modern bridge with complex engineering in the Italian Alps.",
+      "imageUrl": "https://images.unsplash.com/photo-1759756191839-a4b61f821c2c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxicmlkZ2UlMjBlbmdpbmVlcmluZ3xlbnwwfHx8fDE3NjUwOTk1NjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "bridge engineering"
+    }
+  ]
 }
