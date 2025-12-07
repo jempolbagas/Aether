@@ -2,18 +2,41 @@
 
 import { motion } from "framer-motion";
 
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.2,
+            delayChildren: 0.1,
+        },
+    },
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.8, ease: "easeOut" },
+    },
+};
+
 export function Philosophy() {
     return (
         <section id="about" className="w-full min-h-screen flex items-center justify-center py-32 px-6 bg-background relative overflow-hidden">
-            <div className="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+                className="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+            >
 
                 {/* The Motto */}
                 <motion.div
                     className="text-muted-foreground text-sm uppercase tracking-[0.2em]"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
+                    variants={itemVariants}
                 >
                     Motto: Ex Nihilo. (Out of nothing).
                 </motion.div>
@@ -22,10 +45,7 @@ export function Philosophy() {
                 <div className="lg:col-span-2 text-center py-20">
                     <motion.h2
                         className="font-headline text-5xl md:text-7xl lg:text-8xl leading-tight text-foreground"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
+                        variants={itemVariants}
                     >
                         True luxury is <span className="italic text-muted-foreground">silence</span>.
                     </motion.h2>
@@ -34,10 +54,7 @@ export function Philosophy() {
                 {/* The Manifesto Text */}
                 <motion.div
                     className="lg:col-start-2 text-lg md:text-xl leading-relaxed text-muted-foreground"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
+                    variants={itemVariants}
                 >
                     <p className="mb-8">
                         It is the feeling of being suspended in a thunderstorm without getting wet. It is the ability to look out at a world that cannot look back at you.
@@ -47,7 +64,7 @@ export function Philosophy() {
                     </p>
                 </motion.div>
 
-            </div>
+            </motion.div>
         </section>
     );
 }
