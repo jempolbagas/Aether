@@ -3,9 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import { adjustParallax } from "@/ai/flows/adaptive-parallax";
+import { calculateParallax } from "@/lib/parallax";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { useToast } from "@/hooks/use-toast";
 
 const heroImage = PlaceHolderImages.find(img => img.id === 'hero-bg');
 
@@ -13,7 +12,6 @@ const BASE_PARALLAX_AMOUNT = 30; // Base effect in %
 
 export function Hero() {
   const [adjustedParallax, setAdjustedParallax] = useState(BASE_PARALLAX_AMOUNT);
-  const { toast } = useToast();
   
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -24,29 +22,16 @@ export function Hero() {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", `${adjustedParallax}%`]);
 
   useEffect(() => {
-    const handleResize = async () => {
-      try {
-        const screenSize = Math.max(window.innerWidth, window.innerHeight);
-        const result = await adjustParallax({
-          screenSize,
-          baseParallaxAmount: BASE_PARALLAX_AMOUNT,
-        });
-        console.log(`AI Parallax adjustment: ${result.reasoning}`);
-        setAdjustedParallax(result.adjustedParallaxAmount);
-      } catch (error) {
-        console.error("AI Parallax adjustment failed:", error);
-        toast({
-          variant: "destructive",
-          title: "AI Feature Error",
-          description: "Could not adjust parallax effect.",
-        });
-      }
+    const handleResize = () => {
+      const screenSize = Math.max(window.innerWidth, window.innerHeight);
+      const result = calculateParallax(screenSize, BASE_PARALLAX_AMOUNT);
+      setAdjustedParallax(result);
     };
 
     handleResize(); // Initial call
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [toast]);
+  }, []);
 
   if (!heroImage) return null;
 

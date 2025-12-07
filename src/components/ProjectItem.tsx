@@ -1,6 +1,6 @@
 "use client";
 
-import type { Project } from "@/lib/firestore";
+import type { Project } from "@/lib/data";
 import type { ImagePlaceholder } from "@/lib/placeholder-images";
 import { motion } from "framer-motion";
 import Image from "next/image";
