@@ -30,23 +30,33 @@ export const CustomCursor = () => {
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
+    let lastVariantCheck = 0;
+    const VARIANT_CHECK_THROTTLE = 100; // ms
+
     const handleMouseMove = (e: MouseEvent) => {
-      // Update cursor position
+      // Update cursor position (always immediate)
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
       if (!isVisible) setIsVisible(true);
 
-      // Update cursor variant based on target element
-      const target = e.target as HTMLElement;
-      const isLink = target.closest('a') || target.closest('button') || target.closest('[role="button"]');
-      const isProject = target.closest('.project-image');
+      // Throttle variant detection to reduce DOM queries
+      const now = Date.now();
+      if (now - lastVariantCheck > VARIANT_CHECK_THROTTLE) {
+        lastVariantCheck = now;
+        
+        const target = e.target as HTMLElement | null;
+        if (!target) return;
 
-      if (isProject) {
-        setVariant('project');
-      } else if (isLink) {
-        setVariant('pointer');
-      } else {
-        setVariant('default');
+        const isLink = target.closest('a') || target.closest('button') || target.closest('[role="button"]');
+        const isProject = target.closest('.project-image');
+
+        if (isProject) {
+          setVariant('project');
+        } else if (isLink) {
+          setVariant('pointer');
+        } else {
+          setVariant('default');
+        }
       }
     };
 
