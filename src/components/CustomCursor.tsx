@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 export const CustomCursor = () => {
@@ -12,6 +12,10 @@ export const CustomCursor = () => {
   // Mouse position setup
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  
+  // Throttling for variant detection
+  const lastVariantCheck = useRef(0);
+  const VARIANT_CHECK_THROTTLE = 100; // ms
 
   // Smooth spring physics
   const springConfig = { damping: 28, stiffness: 500 };
@@ -30,9 +34,6 @@ export const CustomCursor = () => {
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
-    let lastVariantCheck = 0;
-    const VARIANT_CHECK_THROTTLE = 100; // ms
-
     const handleMouseMove = (e: MouseEvent) => {
       // Update cursor position (always immediate)
       mouseX.set(e.clientX);
@@ -41,14 +42,16 @@ export const CustomCursor = () => {
 
       // Throttle variant detection to reduce DOM queries
       const now = Date.now();
-      if (now - lastVariantCheck > VARIANT_CHECK_THROTTLE) {
-        lastVariantCheck = now;
+      if (now - lastVariantCheck.current > VARIANT_CHECK_THROTTLE) {
+        lastVariantCheck.current = now;
         
-        const target = e.target as HTMLElement | null;
-        if (!target) return;
+        const target = e.target;
+        if (!(target instanceof HTMLElement)) return;
 
-        const isLink = target.closest('a') || target.closest('button') || target.closest('[role="button"]');
-        const isProject = target.closest('.project-image');
+        const isLink = target.closest('a') !== null || 
+                      target.closest('button') !== null || 
+                      target.closest('[role="button"]') !== null;
+        const isProject = target.closest('.project-image') !== null;
 
         if (isProject) {
           setVariant('project');
