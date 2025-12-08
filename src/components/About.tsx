@@ -80,12 +80,14 @@ export function About() {
                     variants={fadeVariants}
                     className="text-center"
                 >
-                    <blockquote className="font-headline text-4xl md:text-6xl italic text-muted-foreground mb-6">
-                        "True luxury is silence. It is the feeling of being suspended in a thunderstorm without getting wet."
-                    </blockquote>
-                    <cite className="not-italic text-sm uppercase tracking-widest text-primary">
-                        — Julian Vance, Principal
-                    </cite>
+                    <figure>
+                        <blockquote className="font-headline text-4xl md:text-6xl italic text-muted-foreground mb-6">
+                            "True luxury is silence. It is the feeling of being suspended in a thunderstorm without getting wet."
+                        </blockquote>
+                        <figcaption className="not-italic text-sm uppercase tracking-widest text-primary">
+                            — Julian Vance, Principal
+                        </figcaption>
+                    </figure>
                 </motion.div>
 
                 {/* Section 3: The Operational Model */}
