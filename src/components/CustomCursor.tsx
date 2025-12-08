@@ -56,25 +56,19 @@ export const CustomCursor = () => {
       }
     };
 
-    // For mouseout, we generally want to reset to default only if we are leaving the element
-    // simpler to just rely on mouseover of new elements or body, but strictly tracking 'out' can ensure consistency
-    // However, mouseover bubbles, so moving from a link to body triggers mouseover on body.
-    // Wait, body is always there.
-    // Let's refine: MouseOver on the document will always fire for the deepest element.
-
     window.addEventListener('mousemove', moveCursor);
+    window.addEventListener('mousemove', handleMouseOver);
     window.addEventListener('mousedown', handleMouseDown);
     window.addEventListener('mouseup', handleMouseUp);
-    window.addEventListener('mouseover', handleMouseOver);
 
     return () => {
       window.removeEventListener('resize', checkMobile);
       window.removeEventListener('mousemove', moveCursor);
+      window.removeEventListener('mousemove', handleMouseOver);
       window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);
-      window.removeEventListener('mouseover', handleMouseOver);
     };
-  }, [mouseX, mouseY, isVisible]);
+  }, [mouseX, mouseY]);
 
   if (isMobile) return null;
 
@@ -85,21 +79,21 @@ export const CustomCursor = () => {
       height: 16,
       backgroundColor: 'transparent',
       border: '1px solid currentColor',
-      mixBlendMode: 'difference' as any,
+      mixBlendMode: 'difference' as React.CSSProperties['mixBlendMode'],
     },
     pointer: {
       width: 24,
       height: 24,
       backgroundColor: 'currentColor',
       border: '0px solid currentColor',
-      mixBlendMode: 'difference' as any,
+      mixBlendMode: 'difference' as React.CSSProperties['mixBlendMode'],
     },
     project: {
       width: 96,
       height: 96,
       backgroundColor: 'currentColor',
       border: '0px solid currentColor',
-      mixBlendMode: 'difference' as any,
+      mixBlendMode: 'difference' as React.CSSProperties['mixBlendMode'],
     },
   };
 
