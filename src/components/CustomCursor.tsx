@@ -30,51 +30,52 @@ export const CustomCursor = () => {
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
-    const moveCursor = (e: MouseEvent) => {
+    const handleMouseMove = (e: MouseEvent) => {
+      // Update cursor position (always immediate)
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
       if (!isVisible) setIsVisible(true);
     };
 
-    const handleMouseDown = () => setIsClicked(true);
-    const handleMouseUp = () => setIsClicked(false);
-
     const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
+      const target = e.target;
+      if (!(target instanceof HTMLElement)) {
+        // Default variant for non-HTMLElement targets
+        setVariant('default');
+        return;
+      }
 
-      // Check for links or buttons
-      const isLink = target.closest('a') || target.closest('button') || target.closest('[role="button"]');
-      // Check for project image
-      const isProject = target.closest('.project-image');
-
-      if (isProject) {
+      // Check for interactive elements (optimized to avoid multiple DOM traversals)
+      const projectElement = target.closest('.project-image');
+      if (projectElement) {
         setVariant('project');
-      } else if (isLink) {
+        return;
+      }
+
+      const interactiveElement = target.closest('a, button, [role="button"]');
+      if (interactiveElement) {
         setVariant('pointer');
       } else {
         setVariant('default');
       }
     };
 
-    // For mouseout, we generally want to reset to default only if we are leaving the element
-    // simpler to just rely on mouseover of new elements or body, but strictly tracking 'out' can ensure consistency
-    // However, mouseover bubbles, so moving from a link to body triggers mouseover on body.
-    // Wait, body is always there.
-    // Let's refine: MouseOver on the document will always fire for the deepest element.
+    const handleMouseDown = () => setIsClicked(true);
+    const handleMouseUp = () => setIsClicked(false);
 
-    window.addEventListener('mousemove', moveCursor);
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseover', handleMouseOver);
     window.addEventListener('mousedown', handleMouseDown);
     window.addEventListener('mouseup', handleMouseUp);
-    window.addEventListener('mouseover', handleMouseOver);
 
     return () => {
       window.removeEventListener('resize', checkMobile);
-      window.removeEventListener('mousemove', moveCursor);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseover', handleMouseOver);
       window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);
-      window.removeEventListener('mouseover', handleMouseOver);
     };
-  }, [mouseX, mouseY, isVisible]);
+  }, [mouseX, mouseY]);
 
   if (isMobile) return null;
 
@@ -85,21 +86,21 @@ export const CustomCursor = () => {
       height: 16,
       backgroundColor: 'transparent',
       border: '1px solid currentColor',
-      mixBlendMode: 'difference' as any,
+      mixBlendMode: 'difference' as React.CSSProperties['mixBlendMode'],
     },
     pointer: {
       width: 24,
       height: 24,
       backgroundColor: 'currentColor',
       border: '0px solid currentColor',
-      mixBlendMode: 'difference' as any,
+      mixBlendMode: 'difference' as React.CSSProperties['mixBlendMode'],
     },
     project: {
       width: 96,
       height: 96,
       backgroundColor: 'currentColor',
       border: '0px solid currentColor',
-      mixBlendMode: 'difference' as any,
+      mixBlendMode: 'difference' as React.CSSProperties['mixBlendMode'],
     },
   };
 
