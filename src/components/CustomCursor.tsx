@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 export const CustomCursor = () => {
@@ -12,10 +12,6 @@ export const CustomCursor = () => {
   // Mouse position setup
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  
-  // Throttling for variant detection
-  const lastVariantCheck = useRef(0);
-  const VARIANT_CHECK_THROTTLE = 100; // ms
 
   // Smooth spring physics
   const springConfig = { damping: 28, stiffness: 500 };
@@ -39,32 +35,28 @@ export const CustomCursor = () => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
       if (!isVisible) setIsVisible(true);
+    };
 
-      // Throttle variant detection to reduce DOM queries
-      const now = Date.now();
-      if (now - lastVariantCheck.current > VARIANT_CHECK_THROTTLE) {
-        lastVariantCheck.current = now;
-        
-        const target = e.target;
-        if (!(target instanceof HTMLElement)) {
-          // Default variant for non-HTMLElement targets
-          setVariant('default');
-          return;
-        }
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target;
+      if (!(target instanceof HTMLElement)) {
+        // Default variant for non-HTMLElement targets
+        setVariant('default');
+        return;
+      }
 
-        // Check for interactive elements (optimized to avoid multiple DOM traversals)
-        const projectElement = target.closest('.project-image');
-        if (projectElement) {
-          setVariant('project');
-          return;
-        }
+      // Check for interactive elements (optimized to avoid multiple DOM traversals)
+      const projectElement = target.closest('.project-image');
+      if (projectElement) {
+        setVariant('project');
+        return;
+      }
 
-        const interactiveElement = target.closest('a, button, [role="button"]');
-        if (interactiveElement) {
-          setVariant('pointer');
-        } else {
-          setVariant('default');
-        }
+      const interactiveElement = target.closest('a, button, [role="button"]');
+      if (interactiveElement) {
+        setVariant('pointer');
+      } else {
+        setVariant('default');
       }
     };
 
@@ -72,12 +64,14 @@ export const CustomCursor = () => {
     const handleMouseUp = () => setIsClicked(false);
 
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseover', handleMouseOver);
     window.addEventListener('mousedown', handleMouseDown);
     window.addEventListener('mouseup', handleMouseUp);
 
     return () => {
       window.removeEventListener('resize', checkMobile);
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseover', handleMouseOver);
       window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);
     };
