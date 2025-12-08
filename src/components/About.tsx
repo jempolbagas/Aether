@@ -1,0 +1,73 @@
+"use client";
+
+import { motion } from "framer-motion";
+
+const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.8, ease: "easeOut" }
+    },
+};
+
+export function About() {
+    return (
+        <section className="w-full bg-background py-32 px-6 md:px-12 text-foreground overflow-hidden">
+            <div className="max-w-4xl mx-auto space-y-32">
+
+                {/* Section 1: The Hook */}
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={textVariants}
+                    className="relative border-l-2 border-primary/50 pl-8 md:pl-16"
+                >
+                    <h2 className="font-headline text-5xl md:text-7xl mb-8">The Art of Disappearing.</h2>
+                    <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl">
+                        We do not build houses. We do not build buildings. We manipulate the landscape to create voids where humanity can confront the sublime.
+                    </p>
+                </motion.div>
+
+                {/* Section 2: The Founder Quote (Julian Vance) */}
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={textVariants}
+                    className="text-center"
+                >
+                    <blockquote className="font-headline text-4xl md:text-6xl italic text-muted-foreground mb-6">
+                        "True luxury is silence. It is the feeling of being suspended in a thunderstorm without getting wet."
+                    </blockquote>
+                    <cite className="not-italic text-sm uppercase tracking-widest text-primary">
+                        — Julian Vance, Principal
+                    </cite>
+                </motion.div>
+
+                {/* Section 3: The Operational Model */}
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={textVariants}
+                    className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start"
+                >
+                    <div>
+                        <h3 className="font-headline text-3xl mb-4">Ex Nihilo</h3>
+                        <p className="text-muted-foreground">
+                            Founded in 2014, Aether operates without a headquarters. We are decentralized by design. We do not meet in boardrooms; we meet at the site of your future project.
+                        </p>
+                    </div>
+                    <div>
+                        <p className="text-muted-foreground">
+                            We use heavy materials—concrete, steel, basalt—to create weightless experiences. We anchor into mountain faces and bury into shorelines not to conquer the landscape, but to become a ghost within it.
+                        </p>
+                    </div>
+                </motion.div>
+
+            </div>
+        </section>
+    );
+}

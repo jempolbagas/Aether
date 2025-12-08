@@ -2,6 +2,7 @@ import { CornerNav } from "@/components/CornerNav";
 import { Hero } from "@/components/Hero";
 import { Philosophy } from "@/components/Philosophy";
 import { ProjectShowcase } from "@/components/ProjectShowcase";
+import { About } from "@/components/About";
 
 export default function Home() {
     return (
@@ -9,6 +10,7 @@ export default function Home() {
             <Hero />
             <Philosophy />
             <ProjectShowcase />
+            <About />
             <CornerNav />
         </main>
     );
