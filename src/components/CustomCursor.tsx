@@ -46,16 +46,21 @@ export const CustomCursor = () => {
         lastVariantCheck.current = now;
         
         const target = e.target;
-        if (!(target instanceof HTMLElement)) return;
+        if (!(target instanceof HTMLElement)) {
+          // Default variant for non-HTMLElement targets
+          setVariant('default');
+          return;
+        }
 
-        const isLink = target.closest('a') !== null || 
-                      target.closest('button') !== null || 
-                      target.closest('[role="button"]') !== null;
-        const isProject = target.closest('.project-image') !== null;
-
-        if (isProject) {
+        // Check for interactive elements (optimized to avoid multiple DOM traversals)
+        const projectElement = target.closest('.project-image');
+        if (projectElement) {
           setVariant('project');
-        } else if (isLink) {
+          return;
+        }
+
+        const interactiveElement = target.closest('a, button, [role="button"]');
+        if (interactiveElement) {
           setVariant('pointer');
         } else {
           setVariant('default');
