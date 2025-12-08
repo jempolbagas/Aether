@@ -41,9 +41,8 @@ export const CustomCursor = () => {
       if (!isVisible) setIsVisible(true);
 
       // Throttle variant detection to reduce DOM queries
-      const now = Date.now();
-      if (now - lastVariantCheck.current > VARIANT_CHECK_THROTTLE) {
-        lastVariantCheck.current = now;
+      if (Date.now() - lastVariantCheck.current > VARIANT_CHECK_THROTTLE) {
+        lastVariantCheck.current = Date.now();
         
         const target = e.target;
         if (!(target instanceof HTMLElement)) {
