@@ -30,21 +30,15 @@ export const CustomCursor = () => {
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
-    const moveCursor = (e: MouseEvent) => {
+    const handleMouseMove = (e: MouseEvent) => {
+      // Update cursor position
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
       if (!isVisible) setIsVisible(true);
-    };
 
-    const handleMouseDown = () => setIsClicked(true);
-    const handleMouseUp = () => setIsClicked(false);
-
-    const handleMouseOver = (e: MouseEvent) => {
+      // Update cursor variant based on target element
       const target = e.target as HTMLElement;
-
-      // Check for links or buttons
       const isLink = target.closest('a') || target.closest('button') || target.closest('[role="button"]');
-      // Check for project image
       const isProject = target.closest('.project-image');
 
       if (isProject) {
@@ -56,15 +50,16 @@ export const CustomCursor = () => {
       }
     };
 
-    window.addEventListener('mousemove', moveCursor);
-    window.addEventListener('mousemove', handleMouseOver);
+    const handleMouseDown = () => setIsClicked(true);
+    const handleMouseUp = () => setIsClicked(false);
+
+    window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mousedown', handleMouseDown);
     window.addEventListener('mouseup', handleMouseUp);
 
     return () => {
       window.removeEventListener('resize', checkMobile);
-      window.removeEventListener('mousemove', moveCursor);
-      window.removeEventListener('mousemove', handleMouseOver);
+      window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);
     };
