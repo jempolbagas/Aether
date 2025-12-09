@@ -2,25 +2,45 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useLenis } from "@/components/SmoothScroll";
 
 const navItemVariants = {
   initial: { opacity: 0, y: -20 },
   animate: { opacity: 1, y: 0 },
 };
 
-const NavLink = ({ href, children, className, delay }: { href: string; children: React.ReactNode; className: string; delay: number }) => (
-  <motion.div
-    initial="initial"
-    animate="animate"
-    variants={navItemVariants}
-    transition={{ duration: 0.5, delay }}
-    className={`fixed p-4 md:p-8 z-50 mix-blend-difference ${className}`}
-  >
-    <Link href={href} className="text-sm uppercase tracking-widest text-foreground hover:text-muted-foreground transition-colors duration-300">
-      {children}
-    </Link>
-  </motion.div>
-);
+const NavLink = ({ href, children, className, delay }: { href: string; children: React.ReactNode; className: string; delay: number }) => {
+  const { lenis } = useLenis();
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // Check if the link is an anchor link or the home link
+    if ((href.startsWith('#') || href === '/') && lenis) {
+      e.preventDefault();
+      const target = href === '/' ? 0 : href;
+      lenis.scrollTo(target);
+      // Silently update URL
+      history.pushState(null, '', href);
+    }
+  };
+
+  return (
+    <motion.div
+      initial="initial"
+      animate="animate"
+      variants={navItemVariants}
+      transition={{ duration: 0.5, delay }}
+      className={`fixed p-4 md:p-8 z-50 mix-blend-difference ${className}`}
+    >
+      <Link
+        href={href}
+        className="text-sm uppercase tracking-widest text-foreground hover:text-muted-foreground transition-colors duration-300"
+        onClick={handleClick}
+      >
+        {children}
+      </Link>
+    </motion.div>
+  );
+};
 
 export function CornerNav() {
   return (

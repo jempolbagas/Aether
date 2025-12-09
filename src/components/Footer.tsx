@@ -3,8 +3,19 @@
 import { footerLinks, socialLinks, legalLinks } from "@/lib/contact-data";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
+import { useLenis } from "@/components/SmoothScroll";
 
 export function Footer() {
+    const { lenis } = useLenis();
+
+    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        if (href.startsWith('#') && lenis) {
+            e.preventDefault();
+            lenis.scrollTo(href);
+            history.pushState(null, '', href);
+        }
+    };
+
     return (
         <footer className="w-full bg-foreground text-background py-16 md:py-24 px-6 md:px-12 overflow-hidden">
             <div className="max-w-[1920px] mx-auto flex flex-col h-full">
@@ -32,6 +43,7 @@ export function Footer() {
                                     <a
                                         href={link.href}
                                         className="font-headline text-2xl hover:text-background/60 transition-colors duration-300"
+                                        onClick={(e) => handleNavClick(e, link.href)}
                                     >
                                         {link.title}
                                     </a>
