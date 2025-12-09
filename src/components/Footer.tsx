@@ -83,13 +83,20 @@ export function Footer() {
                         <h4 className="font-mono text-xs uppercase tracking-widest text-background/50">
                             // Newsletter
                         </h4>
-                        <div className="space-y-4">
+                        <form
+                            className="space-y-4"
+                            onSubmit={(e) => {
+                                e.preventDefault();
+                                // handle newsletter signup
+                            }}
+                        >
                             <Input
                                 type="email"
+                                name="email"
                                 placeholder="ENTER FREQUENCY..."
                                 className="bg-transparent border-b border-background/20 border-t-0 border-x-0 rounded-none px-0 py-2 placeholder:text-background/40 text-background focus-visible:ring-0 focus-visible:border-background"
                             />
-                        </div>
+                        </form>
                     </div>
                 </div>
 

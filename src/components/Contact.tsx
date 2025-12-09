@@ -13,7 +13,7 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 
 const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
@@ -37,18 +37,25 @@ const staggerContainer = {
 
 export function Contact() {
     const { toast } = useToast();
+    const [topography, setTopography] = useState("");
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        const formData = new FormData(e.target as HTMLFormElement);
-        const data = Object.fromEntries(formData.entries());
-        console.log("Form Submission:", data);
+        const form = e.target as HTMLFormElement;
+        const formData = new FormData(form);
+        const data = {
+            ...Object.fromEntries(formData.entries()),
+            topography
+        };
 
         toast({
             title: "TRANSMISSION RECEIVED",
             description: "Your commission request has been logged.",
             duration: 5000,
         });
+        
+        form.reset();
+        setTopography("");
     };
 
     return (
@@ -164,11 +171,11 @@ export function Contact() {
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="topography" className="font-mono text-xs uppercase text-neutral-400">
+                                <label id="topography-label" className="font-mono text-xs uppercase text-neutral-400">
                                     Topography
                                 </label>
-                                <Select name="topography" required>
-                                    <SelectTrigger className="bg-neutral-900 border-neutral-800 text-neutral-200 focus:ring-0 focus:border-primary rounded-none h-12">
+                                <Select name="topography" value={topography} onValueChange={setTopography} required>
+                                    <SelectTrigger aria-labelledby="topography-label" className="bg-neutral-900 border-neutral-800 text-neutral-200 focus:ring-0 focus:border-primary rounded-none h-12">
                                         <SelectValue placeholder="SELECT TERRAIN TYPE" />
                                     </SelectTrigger>
                                     <SelectContent className="bg-neutral-900 border-neutral-800 text-neutral-200">
