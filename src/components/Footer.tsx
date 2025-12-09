@@ -1,3 +1,5 @@
+"use client";
+
 import { footerLinks, socialLinks, legalLinks } from "@/lib/contact-data";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
