@@ -1,18 +1,20 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { footerLinks, socialLinks, legalLinks } from "@/lib/contact-data";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { useLenis } from "@/components/SmoothScroll";
 
 export function Footer() {
+    const router = useRouter();
     const { lenis } = useLenis();
 
     const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
         if (href.startsWith('#') && lenis) {
             e.preventDefault();
             lenis.scrollTo(href);
-            history.pushState(null, '', href);
+            router.push(href, { scroll: false });
         }
     };
 

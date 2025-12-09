@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, ReactNode, useEffect, useRef, useState } from 'react';
+import { createContext, useContext, ReactNode, useEffect, useState } from 'react';
 import Lenis from '@studio-freight/lenis';
 
 interface LenisContextValue {
@@ -19,7 +19,6 @@ export const useLenis = () => {
 
 export function SmoothScroll({ children }: { children: ReactNode }) {
   const [lenisInstance, setLenisInstance] = useState<Lenis | null>(null);
-  const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -28,7 +27,6 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       gestureOrientation: 'vertical',
     });
 
-    lenisRef.current = lenis;
     setLenisInstance(lenis);
 
     function raf(time: number) {
@@ -40,7 +38,6 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
 
     return () => {
       lenis.destroy();
-      lenisRef.current = null;
       setLenisInstance(null);
     };
   }, []);
