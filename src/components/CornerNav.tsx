@@ -30,7 +30,7 @@ const NavLink = ({ href, children, className, delay }: { href: string; children:
       initial="initial"
       animate="animate"
       variants={navItemVariants}
-      transition={{ duration: 0.5, delay }}
+      transition={{ duration: 1.2, ease: "easeOut", delay }}
       className={`fixed p-4 md:p-8 z-50 mix-blend-difference ${className}`}
     >
       <Link

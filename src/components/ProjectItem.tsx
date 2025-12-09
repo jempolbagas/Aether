@@ -18,14 +18,14 @@ export function ProjectItem({ project, image }: ProjectItemProps) {
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 1.2, ease: "easeOut" }}
     >
       <Image
         src={image.imageUrl}
         alt={project.title}
         fill
         sizes="100vw"
-        className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+        className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
         data-ai-hint={image.imageHint}
         priority={image.id === 'project-void'}
       />
@@ -35,7 +35,7 @@ export function ProjectItem({ project, image }: ProjectItemProps) {
         <div className="max-w-4xl">
           <div className="overflow-hidden relative">
              <motion.p 
-                className="text-sm uppercase tracking-wider text-muted-foreground mb-2 transform-gpu translate-y-full transition-transform duration-500 ease-out group-hover:translate-y-0"
+                className="text-sm uppercase tracking-wider text-muted-foreground mb-2 transform-gpu translate-y-full transition-transform duration-1000 ease-out group-hover:translate-y-0"
               >
                 {project.tag} &mdash; {project.location}
               </motion.p>

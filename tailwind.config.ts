@@ -10,11 +10,15 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Inter', 'sans-serif'],
-        headline: ['"Playfair Display"', 'serif'],
+        body: ['var(--font-manrope)', 'sans-serif'],
+        headline: ['var(--font-manrope)', 'sans-serif'],
         code: ['monospace'],
       },
       colors: {
+        void: '#0a0a0a',
+        concrete: '#808080',
+        copper: '#B87333',
+        basalt: '#1c1c1c',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
