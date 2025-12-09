@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 import { useLenis } from "@/components/SmoothScroll";
 
 const navItemVariants = {
@@ -11,6 +12,7 @@ const navItemVariants = {
 
 const NavLink = ({ href, children, className, delay }: { href: string; children: React.ReactNode; className: string; delay: number }) => {
   const { lenis } = useLenis();
+  const router = useRouter();
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     // Check if the link is an anchor link or the home link
@@ -18,8 +20,8 @@ const NavLink = ({ href, children, className, delay }: { href: string; children:
       e.preventDefault();
       const target = href === '/' ? 0 : href;
       lenis.scrollTo(target);
-      // Silently update URL
-      history.pushState(null, '', href);
+      // Silently update URL using Next.js router
+      router.push(href, { scroll: false });
     }
   };
 
