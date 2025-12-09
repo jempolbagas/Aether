@@ -36,7 +36,7 @@ export function About() {
     const quoteY = useTransform(quoteProgress, [0, 1], [-20, 20]);
 
     return (
-        <section className="w-full bg-background py-32 px-6 md:px-12 text-foreground overflow-hidden">
+        <section id="about-founder" className="w-full bg-background py-32 px-6 md:px-12 text-foreground overflow-hidden">
             <div className="max-w-6xl mx-auto space-y-32">
 
                 {/* Section 1: The Hook */}
