@@ -10,9 +10,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Inter', 'sans-serif'],
-        headline: ['"Playfair Display"', 'serif'],
-        code: ['monospace'],
+        body: ['"IBM Plex Mono"', 'monospace'],
+        headline: ['"Cormorant Garamond"', 'serif'],
+        mono: ['"IBM Plex Mono"', 'monospace'],
       },
       colors: {
         background: 'hsl(var(--background))',

@@ -38,7 +38,6 @@ const staggerContainer = {
 export function Contact() {
     const { toast } = useToast();
     const [topography, setTopography] = useState("");
-    const [budget, setBudget] = useState("");
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
@@ -46,8 +45,7 @@ export function Contact() {
         const formData = new FormData(form);
         const data = {
             ...Object.fromEntries(formData.entries()),
-            topography,
-            budget
+            topography
         };
 
         toast({
@@ -58,7 +56,6 @@ export function Contact() {
         
         form.reset();
         setTopography("");
-        setBudget("");
     };
 
     return (
@@ -180,19 +177,15 @@ export function Contact() {
                             </div>
 
                             <div className="space-y-2">
-                                <label id="budget-label" className="font-mono text-xs uppercase text-neutral-400">
-                                    Budget Range
+                                <label htmlFor="referral" className="font-mono text-xs uppercase text-neutral-400">
+                                    Referral Code
                                 </label>
-                                <Select name="budget" value={budget} onValueChange={setBudget} required>
-                                    <SelectTrigger aria-labelledby="budget-label" className="bg-neutral-900 border-neutral-800 text-neutral-200 focus:ring-0 focus:border-primary rounded-none h-12">
-                                        <SelectValue placeholder="SELECT BUDGET RANGE" />
-                                    </SelectTrigger>
-                                    <SelectContent className="bg-neutral-900 border-neutral-800 text-neutral-200">
-                                        <SelectItem value="5m-10m">$5M - $10M</SelectItem>
-                                        <SelectItem value="10m-50m">$10M - $50M</SelectItem>
-                                        <SelectItem value="unconstrained">Unconstrained</SelectItem>
-                                    </SelectContent>
-                                </Select>
+                                <Input
+                                    id="referral"
+                                    name="referral"
+                                    placeholder="COORDINATES (OPTIONAL)"
+                                    className="bg-neutral-900 border-neutral-800 text-neutral-200 placeholder:text-neutral-700 focus:border-primary rounded-none h-12"
+                                />
                             </div>
 
                             <div className="space-y-2">
@@ -213,7 +206,7 @@ export function Contact() {
                                 size="lg"
                                 className="w-full bg-primary text-black hover:bg-white hover:text-black rounded-none h-14 font-mono uppercase tracking-widest text-sm"
                             >
-                                Request Private Consultation
+                                TRANSMIT
                             </Button>
                         </form>
                     </motion.div>

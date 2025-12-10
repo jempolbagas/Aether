@@ -84,4 +84,36 @@
   html {
     scroll-behavior: auto !important;
   }
+  
+  /* Brutalist Design System Typography */
+  h1, h2, .headline {
+    font-family: 'Cormorant Garamond', serif;
+    color: #FFFFFF;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+  }
+  
+  p, span, .body-copy {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 200;
+    font-size: 12px;
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: left;
+    max-width: 350px;
+  }
+  
+  .metadata, nav a, footer a, label {
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+  }
+  
+  /* Hide default cursor for custom cursor */
+  * {
+    cursor: none !important;
+  }
 }
