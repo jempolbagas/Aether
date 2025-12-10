@@ -119,7 +119,7 @@ function Card({ project }: { project: Project }) {
             </div>
 
             {/* Bottom: Title & Details */}
-            <div className="space-y-6 z-10 max-w-4xl">
+            <div className="space-y-6 z-20 max-w-4xl relative">
                 <div>
                     <h3 className="font-headline text-5xl md:text-7xl lg:text-8xl font-medium uppercase tracking-tighter leading-[0.95] mb-4 text-white">
                         {project.title}

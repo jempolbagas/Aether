@@ -58,7 +58,7 @@ export function Hero() {
           className="object-cover"
           data-ai-hint={heroImage.imageHint}
         />
-        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="absolute inset-0 bg-black/40"></div>
       </motion.div>
     </section>
   );

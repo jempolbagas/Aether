@@ -18,8 +18,8 @@ export function Footer() {
     };
 
     return (
-        <footer className="w-full bg-foreground text-background py-16 md:py-24 px-6 md:px-12 overflow-hidden">
-            <div className="max-w-[1920px] mx-auto flex flex-col h-full">
+        <footer className="w-full bg-foreground text-background py-16 md:py-24 px-6 md:px-12 overflow-hidden relative">
+            <div className="max-w-[1920px] mx-auto flex flex-col h-full relative z-10">
 
                 {/* Top Row: Massive Logo */}
                 <div className="mb-8 md:mb-12">
@@ -109,6 +109,14 @@ export function Footer() {
                         Aether Architecture Group
                     </p>
                 </div>
+            </div>
+
+            {/* Watermark Background Text */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+                <h2 className="font-headline text-[20vw] md:text-[25vw] lg:text-[30vw] leading-none tracking-tighter uppercase" 
+                    style={{ color: '#A0A0A0', opacity: 0.08 }}>
+                    AETHER
+                </h2>
             </div>
         </footer>
     );
