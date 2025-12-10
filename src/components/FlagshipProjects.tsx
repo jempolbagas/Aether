@@ -21,7 +21,7 @@ const projects: Project[] = [
     specs: '[46.5° N, 11.8° E] // ELEV: 2200M',
     description: 'A rejection of the ground. Cantilevered 42 meters over a sheer vertical drop, the structure is designed to generate a distinct psychological response: the thrill of suspension.',
     lore: 'Gravity is a suggestion.',
-    image: 'https://images.unsplash.com/photo-1518091043644-c1d4457512c6?q=80&w=2589&auto=format&fit=crop',
+    image: '/the-vector.webp',
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ const projects: Project[] = [
     specs: '[63.8° N, 22.4° W] // TEMP: 38°C',
     description: 'Architecture is usually an act of addition. The Origin is an act of subtraction. Located inside a dormant volcanic lava tube, we simply carved the void.',
     lore: 'Civilization is noise.',
-    image: 'https://images.unsplash.com/photo-1476610182048-b716b8518aae?q=80&w=2659&auto=format&fit=crop',
+    image: '/the-origin.webp',
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ const projects: Project[] = [
     specs: '[78.2° N, 15.6° E] // TEMP: -12°C',
     description: 'A tomb for information. A black triangle on a white horizon designed to outlast the civilization that built it. It creates no heat; it reflects no light.',
     lore: 'A fortress for legacy.',
-    image: 'https://images.unsplash.com/photo-1516937941348-c03e3c330cfa?q=80&w=2669&auto=format&fit=crop',
+    image: '/the-monolith.webp',
   },
   {
     id: 4,
@@ -48,7 +48,7 @@ const projects: Project[] = [
     specs: '[35.6° N, 139.7° E] // VISIBILITY: 0%',
     description: 'Tokyo is a city of observation. The Veil is a machine for privacy. An inverted panopticon where the resident sees everything, but the city sees nothing.',
     lore: 'True power is invisibility.',
-    image: 'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=2670&auto=format&fit=crop',
+    image: '/the-veil.webp',
   },
 ];
 
