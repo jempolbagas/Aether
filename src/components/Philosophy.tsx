@@ -47,7 +47,7 @@ export function Philosophy() {
                         className="font-headline text-5xl md:text-7xl lg:text-8xl leading-tight text-foreground"
                         variants={itemVariants}
                     >
-                        True luxury is <span className="italic">silence</span>.
+                        True luxury is <span className="italic text-muted-foreground">silence</span>.
                     </motion.h2>
                 </div>
 

@@ -45,9 +45,9 @@ export function About() {
                     whileInView="visible"
                     viewport={{ once: true, margin: "-100px" }}
                     variants={textVariants}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch"
+                    className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
                 >
-                    <div className="relative border-l-2 border-primary/50 pl-8 md:pl-16 flex flex-col justify-between">
+                    <div className="relative border-l-2 border-primary/50 pl-8 md:pl-16">
                         <h2 className="font-headline text-5xl md:text-7xl mb-8">The Art of Disappearing.</h2>
                         <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl">
                             We do not build houses. We do not build buildings. We manipulate the landscape to create voids where humanity can confront the sublime.
@@ -88,8 +88,6 @@ export function About() {
                             — Julian Vance, Principal
                         </figcaption>
                     </figure>
-                    {/* Horizontal separator line between quote and body text below */}
-                    <div className="w-full h-[1px] bg-white/20 mt-16"></div>
                 </motion.div>
 
                 {/* Section 3: The Operational Model */}
