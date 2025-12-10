@@ -38,6 +38,7 @@ const staggerContainer = {
 export function Contact() {
     const { toast } = useToast();
     const [topography, setTopography] = useState("");
+    const [budget, setBudget] = useState("");
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
@@ -45,17 +46,19 @@ export function Contact() {
         const formData = new FormData(form);
         const data = {
             ...Object.fromEntries(formData.entries()),
-            topography
+            topography,
+            budget
         };
 
         toast({
-            title: "TRANSMISSION RECEIVED",
-            description: "Your commission request has been logged.",
+            title: "Request Received",
+            description: "Your inquiry has been received. Our directors will review it shortly.",
             duration: 5000,
         });
         
         form.reset();
         setTopography("");
+        setBudget("");
     };
 
     return (
@@ -117,18 +120,6 @@ export function Contact() {
                                 ))}
                             </div>
                         </div>
-
-                        <div className="border-t border-neutral-800 pt-8">
-                            <h3 className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-4">
-                                // Direct Line
-                            </h3>
-                            <a
-                                href={`mailto:${contactInfo.email}`}
-                                className="font-headline text-2xl md:text-3xl text-neutral-200 hover:text-primary transition-colors duration-300"
-                            >
-                                {contactInfo.email}
-                            </a>
-                        </div>
                     </motion.div>
 
                     {/* Right Column: Inquiry Form */}
@@ -140,7 +131,7 @@ export function Contact() {
                         className="relative"
                     >
                          <h3 className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-8 border-t border-neutral-800 pt-8">
-                            // Initiate Commission
+                            // Private Consultation
                         </h3>
 
                         <form onSubmit={handleSubmit} className="space-y-8">
@@ -189,6 +180,22 @@ export function Contact() {
                             </div>
 
                             <div className="space-y-2">
+                                <label id="budget-label" className="font-mono text-xs uppercase text-neutral-400">
+                                    Budget Range
+                                </label>
+                                <Select name="budget" value={budget} onValueChange={setBudget} required>
+                                    <SelectTrigger aria-labelledby="budget-label" className="bg-neutral-900 border-neutral-800 text-neutral-200 focus:ring-0 focus:border-primary rounded-none h-12">
+                                        <SelectValue placeholder="SELECT BUDGET RANGE" />
+                                    </SelectTrigger>
+                                    <SelectContent className="bg-neutral-900 border-neutral-800 text-neutral-200">
+                                        <SelectItem value="5m-10m">$5M - $10M</SelectItem>
+                                        <SelectItem value="10m-50m">$10M - $50M</SelectItem>
+                                        <SelectItem value="unconstrained">Unconstrained</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+
+                            <div className="space-y-2">
                                 <label htmlFor="vision" className="font-mono text-xs uppercase text-neutral-400">
                                     The Vision
                                 </label>
@@ -206,7 +213,7 @@ export function Contact() {
                                 size="lg"
                                 className="w-full bg-primary text-black hover:bg-white hover:text-black rounded-none h-14 font-mono uppercase tracking-widest text-sm"
                             >
-                                Initiate Commission
+                                Request Private Consultation
                             </Button>
                         </form>
                     </motion.div>
