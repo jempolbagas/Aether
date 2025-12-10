@@ -10,7 +10,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['"IBM Plex Mono"', 'monospace'],
+        body: ['"Geist"', 'sans-serif'],
         headline: ['"Cormorant Garamond"', 'serif'],
         mono: ['"IBM Plex Mono"', 'monospace'],
       },

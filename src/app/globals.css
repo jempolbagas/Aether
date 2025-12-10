@@ -85,7 +85,7 @@
     scroll-behavior: auto !important;
   }
   
-  /* Brutalist Design System Typography */
+  /* Luxury Design System Typography */
   h1, h2, .headline {
     font-family: 'Cormorant Garamond', serif;
     color: #FFFFFF;
@@ -105,7 +105,7 @@
   }
   
   .metadata, nav a, footer a, label {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Inter', sans-serif;
     text-transform: uppercase;
     font-size: 12px;
     font-weight: 500;

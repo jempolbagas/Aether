@@ -1,6 +1,6 @@
 # Aether Portfolio
 
-A purely static Next.js portfolio website showcasing architectural projects with a "Digital Brutalism" aesthetic.
+A purely static Next.js portfolio website showcasing architectural projects with a "Exclusive Premium Luxury" aesthetic.
 
 ## Tech Stack
 
