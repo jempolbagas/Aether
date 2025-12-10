@@ -1,7 +1,29 @@
 import type {Metadata} from 'next';
+import localFont from 'next/font/local';
 import './globals.css';
 import { SmoothScroll } from '@/components/SmoothScroll';
 import { Toaster } from '@/components/ui/toaster';
+
+const oggHeadline = localFont({
+  src: './fonts/Ogg-Regular.woff2',
+  variable: '--font-headline',
+  display: 'swap',
+});
+
+const oggBody = localFont({
+  src: [
+    {
+      path: './fonts/OggText-Book.woff2',
+      style: 'normal',
+    },
+    {
+      path: './fonts/OggText-BookItalic.woff2',
+      style: 'italic',
+    },
+  ],
+  variable: '--font-body',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Aether Portfolio',
@@ -15,12 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
-      </head>
-      <body className="font-body antialiased">
+      <body className={`${oggBody.variable} ${oggHeadline.variable} font-body antialiased`}>
         <SmoothScroll>
           {children}
         </SmoothScroll>
