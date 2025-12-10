@@ -52,6 +52,8 @@ const projects: Project[] = [
   },
 ];
 
+const MAX_SCROLL_OFFSET = '-92%';
+
 export function FlagshipProjects() {
   const targetRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
@@ -59,7 +61,7 @@ export function FlagshipProjects() {
   });
 
   // Adjusted transform for the wider gap (gap-40) and smoother feel.
-  const x = useTransform(scrollYProgress, [0, 1], ['0%', '-92%']);
+  const x = useTransform(scrollYProgress, [0, 1], ['0%', MAX_SCROLL_OFFSET]);
 
   return (
     // FIX 1: Increased height to 500vh for a "heavier," slower scroll feel.
