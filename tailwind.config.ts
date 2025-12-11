@@ -10,8 +10,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['"Geist"', 'sans-serif'],
         headline: ['"Cormorant Garamond"', 'serif'],
+        // The Engineer (Used for body AND technical details)
+        body: ['"IBM Plex Mono"', 'monospace'], 
         mono: ['"IBM Plex Mono"', 'monospace'],
       },
       colors: {

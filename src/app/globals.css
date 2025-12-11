@@ -86,32 +86,33 @@
   }
   
   /* Luxury Design System Typography */
-  h1, h2, .headline {
+  
+  /* HEADLINES: Massive, elegant, tight */
+  h1, h2, h3, .font-headline {
     font-family: 'Cormorant Garamond', serif;
-    color: #FFFFFF;
-    line-height: 0.95;
-    letter-spacing: -0.04em;
+    font-weight: 300; /* Lighter looks more expensive */
+    line-height: 0.95; /* Tighter vertical rhythm */
+    letter-spacing: -0.03em; /* Pull letters slightly closer */
   }
-  
-  p, span, .body-copy {
+
+  /* BODY: Technical, clean, readable but mechanical */
+  p, .body-copy {
     font-family: 'IBM Plex Mono', monospace;
-    font-weight: 200;
-    font-size: 14px;
-    line-height: 1.7;
-    letter-spacing: 0.02em;
-    color: rgba(255, 255, 255, 0.8);
-    text-align: left;
-    max-width: 350px;
+    font-weight: 300;
+    font-size: 14px; /* Slightly smaller than standard 16px looks more refined */
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+    color: rgba(255, 255, 255, 0.7); /* Never pure white for body text */
   }
-  
-  .metadata, nav a, footer a, label {
-    font-family: 'Inter', sans-serif;
+
+  /* METADATA: The "Blueprint" look */
+  .metadata, nav a, label, .text-xs {
+    font-family: 'IBM Plex Mono', monospace;
     text-transform: uppercase;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.15em;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.15em; /* W I D E spacing */
   }
-  
   /* Hide default cursor for custom cursor */
   * {
     cursor: none !important;
