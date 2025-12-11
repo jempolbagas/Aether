@@ -92,7 +92,7 @@ function Card({ project, isMobile = false }: { project: Project; isMobile?: bool
                         {project.title}
                     </h3>
                     <p className="font-mono text-xs md:text-sm text-accent uppercase tracking-[0.2em] text-white/60">
-                        {project.subtitle}
+                        {project.subtitle} / {project.location}
                     </p>
                 </div>
 

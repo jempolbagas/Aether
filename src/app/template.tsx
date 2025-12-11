@@ -4,6 +4,9 @@ import { motion } from 'framer-motion';
 
 export default function Template({ children }: { children: React.ReactNode }) {
   return (
+    // Note: 'exit' animations are not fully supported in template.tsx without AnimatePresence.
+    // The exit property is included for future compatibility but may not trigger as expected.
+    // See https://github.com/framer/motion/issues/191 for details.
     <motion.div
       initial={{ opacity: 0, filter: 'blur(10px)' }}
       animate={{ opacity: 1, filter: 'blur(0px)' }}

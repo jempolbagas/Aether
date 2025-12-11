@@ -4,9 +4,9 @@ export interface Project {
   title: string;
   subtitle: string;
   location: string;
-  specs: string; // Keeping the original specs string as well
-  coordinates: string; // Breaking out for potential use
-  temperature: string; // Breaking out for potential use
+  specs: string; // Full specification string for display purposes.
+  coordinates: string; // Parsed coordinates, for mapping or geolocation features.
+  secondaryMetric: string; // Parsed elevation/temperature/visibility, for filtering or analytics.
   description: string;
   lore: string;
   image: string;
@@ -14,6 +14,7 @@ export interface Project {
   year: string;
   materials: string[];
   gallery: string[];
+  narrative?: string; // Optional project-specific narrative text
 }
 
 export const projects: Project[] = [
@@ -25,7 +26,7 @@ export const projects: Project[] = [
     location: 'Dolomites, Italy',
     specs: '[46.5° N, 11.8° E] // ELEV: 2200M',
     coordinates: '46.5° N, 11.8° E',
-    temperature: 'ELEV: 2200M',
+    secondaryMetric: 'ELEV: 2200M',
     description: 'A rejection of the ground. Cantilevered 42 meters over a sheer vertical drop, the structure is designed to generate a distinct psychological response: the thrill of suspension.',
     lore: 'Gravity is a suggestion.',
     image: '/the-vector.webp',
@@ -33,7 +34,7 @@ export const projects: Project[] = [
     year: '2024',
     materials: ['Reinforced Concrete', 'Oxidized Steel', 'Smart Glass'],
     gallery: [
-      'https://images.unsplash.com/photo-1483347752404-8fe70994fadb?q=80&w=2670&auto=format&fit=crop', // Foggy mountains
+      'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?q=80&w=2670&auto=format&fit=crop', // Foggy mountains (replacement)
       'https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=2574&auto=format&fit=crop', // Abstract mist
       'https://images.unsplash.com/photo-1444090542259-0af8fa96557e?q=80&w=2670&auto=format&fit=crop', // Dark texture
       'https://images.unsplash.com/photo-1490682143684-14369e18dce8?q=80&w=2670&auto=format&fit=crop', // Minimalist rock
@@ -47,7 +48,7 @@ export const projects: Project[] = [
     location: 'Reykjanes, Iceland',
     specs: '[63.8° N, 22.4° W] // TEMP: 38°C',
     coordinates: '63.8° N, 22.4° W',
-    temperature: '38°C',
+    secondaryMetric: '38°C',
     description: 'Architecture is usually an act of addition. The Origin is an act of subtraction. Located inside a dormant volcanic lava tube, we simply carved the void.',
     lore: 'Civilization is noise.',
     image: '/the-origin.webp',
@@ -69,7 +70,7 @@ export const projects: Project[] = [
     location: 'Svalbard, Norway',
     specs: '[78.2° N, 15.6° E] // TEMP: -12°C',
     coordinates: '78.2° N, 15.6° E',
-    temperature: '-12°C',
+    secondaryMetric: '-12°C',
     description: 'A tomb for information. A black triangle on a white horizon designed to outlast the civilization that built it. It creates no heat; it reflects no light.',
     lore: 'A fortress for legacy.',
     image: '/the-monolith.webp',
@@ -91,7 +92,7 @@ export const projects: Project[] = [
     location: 'Tokyo, Japan',
     specs: '[35.6° N, 139.7° E] // VISIBILITY: 0%',
     coordinates: '35.6° N, 139.7° E',
-    temperature: 'VISIBILITY: 0%',
+    secondaryMetric: 'VISIBILITY: 0%',
     description: 'Tokyo is a city of observation. The Veil is a machine for privacy. An inverted panopticon where the resident sees everything, but the city sees nothing.',
     lore: 'True power is invisibility.',
     image: '/the-veil.webp',

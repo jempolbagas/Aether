@@ -104,6 +104,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 src={project.image}
                 alt={project.title}
                 fill
+                sizes="100vw"
                 className="object-cover"
                 priority
             />
@@ -123,9 +124,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                  </p>
                  <div className="h-[1px] w-20 bg-white/20" />
                  <p className="font-body text-sm md:text-base leading-relaxed text-white/60 max-w-prose">
-                     The structure exists not to accommodate, but to challenge. Every angle is a decision, every void a statement.
-                     In {project.location}, we found a silence that demanded form. This project is our answer to that silence—a
-                     sovereign entity of {project.materials.join(', ').toLowerCase()} standing against time.
+                     {project.narrative
+                       ? project.narrative
+                       : `The structure exists not to accommodate, but to challenge. Every angle is a decision, every void a statement.
+                     In ${project.location}, we found a silence that demanded form. This project is our answer to that silence—a
+                     sovereign entity of ${project.materials.join(', ').toLowerCase()} standing against time.`}
                  </p>
              </div>
         </section>
