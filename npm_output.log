@@ -1,0 +1,11 @@
+
+> nextn@0.1.0 start
+> next start
+
+   ▲ Next.js 15.5.7
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.0.2:3000
+
+ ✓ Starting...
+ ✓ Ready in 880ms
+ ⨯ upstream image response failed for https://images.unsplash.com/photo-1483347752404-8fe70994fadb?q=80&w=2670&auto=format&fit=crop 404

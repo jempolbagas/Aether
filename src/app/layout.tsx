@@ -3,6 +3,21 @@ import './globals.css';
 import { SmoothScroll } from '@/components/SmoothScroll';
 import { Toaster } from '@/components/ui/toaster';
 import { CustomCursor } from '@/components/CustomCursor';
+import { Cormorant_Garamond, IBM_Plex_Mono } from 'next/font/google';
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  variable: '--font-headline',
+  display: 'swap',
+  weight: ['300', '400', '500', '600', '700'],
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+  weight: ['300', '400'],
+});
 
 export const metadata: Metadata = {
   title: 'Aether Portfolio',
@@ -16,12 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@200;300;400&display=swap" rel="stylesheet" />
-      </head>
-      <body className="font-body antialiased">
+      <body className={`${cormorant.variable} ${plexMono.variable} font-body antialiased`}>
         <CustomCursor />
         <SmoothScroll>
           {children}
