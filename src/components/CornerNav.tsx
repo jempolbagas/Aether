@@ -20,6 +20,41 @@ const navItemVariants = {
   animate: { opacity: 1, y: 0 },
 };
 
+// Mobile menu link with smooth scrolling
+const MobileMenuLink = ({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) => {
+  const { lenis } = useLenis();
+  const router = useRouter();
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // Check if the link is an anchor link or the home link
+    if ((href.startsWith('#') || href === '/') && lenis) {
+      e.preventDefault();
+      const target = href === '/' ? 0 : href;
+      lenis.scrollTo(target);
+      // Silently update URL using Next.js router
+      router.push(href, { scroll: false });
+    }
+  };
+
+  return (
+    <SheetClose asChild>
+      <Link 
+        href={href}
+        className="text-2xl font-headline uppercase tracking-widest text-foreground"
+        onClick={handleClick}
+      >
+        {children}
+      </Link>
+    </SheetClose>
+  );
+};
+
 // Reusing NavLink for both Desktop and Mobile Menu (styling adjusted via className)
 const NavLink = ({
   href,
@@ -100,7 +135,7 @@ export function CornerNav() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="text-sm uppercase tracking-widest text-foreground hover:text-muted-foreground transition-colors duration-300 bg-transparent border-none cursor-pointer"
             >
-              Menu
+              MENU
             </motion.button>
           </SheetTrigger>
           <SheetContent side="right" className="w-full bg-background border-l border-white/10 flex flex-col justify-center items-center gap-8">
@@ -112,26 +147,10 @@ export function CornerNav() {
             </SheetDescription>
 
             <div className="flex flex-col gap-8 text-center">
-              <SheetClose asChild>
-                <Link href="/" className="text-2xl font-headline uppercase tracking-widest text-foreground">
-                  Aether
-                </Link>
-              </SheetClose>
-              <SheetClose asChild>
-                <Link href="#projects" className="text-2xl font-headline uppercase tracking-widest text-foreground">
-                  Projects
-                </Link>
-              </SheetClose>
-              <SheetClose asChild>
-                <Link href="#about" className="text-2xl font-headline uppercase tracking-widest text-foreground">
-                  Manifesto
-                </Link>
-              </SheetClose>
-              <SheetClose asChild>
-                <Link href="#contact" className="text-2xl font-headline uppercase tracking-widest text-foreground">
-                  Contact
-                </Link>
-              </SheetClose>
+              <MobileMenuLink href="/">Aether</MobileMenuLink>
+              <MobileMenuLink href="#projects">Projects</MobileMenuLink>
+              <MobileMenuLink href="#about">Manifesto</MobileMenuLink>
+              <MobileMenuLink href="#contact">Contact</MobileMenuLink>
             </div>
           </SheetContent>
         </Sheet>
