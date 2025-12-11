@@ -49,7 +49,7 @@ export function CornerNav() {
     <nav>
       <NavLink href="/" className="top-0 left-0" delay={0.2}>Aether</NavLink>
       <NavLink href="#projects" className="top-0 right-0" delay={0.4}>Projects</NavLink>
-      <NavLink href="#about" className="bottom-0 left-0" delay={0.6}>About</NavLink>
+      <NavLink href="#about" className="bottom-0 left-0" delay={0.6}>Manifesto</NavLink>
       <NavLink href="#contact" className="bottom-0 right-0" delay={0.8}>Contact</NavLink>
     </nav>
   );

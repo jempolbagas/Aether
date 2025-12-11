@@ -84,4 +84,37 @@
   html {
     scroll-behavior: auto !important;
   }
+  
+  /* Luxury Design System Typography */
+  
+  /* HEADLINES: Massive, elegant, tight */
+  h1, h2, h3, .font-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300; /* Lighter looks more expensive */
+    line-height: 0.95; /* Tighter vertical rhythm */
+    letter-spacing: -0.03em; /* Pull letters slightly closer */
+  }
+
+  /* BODY: Technical, clean, readable but mechanical */
+  p, .body-copy {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 300;
+    font-size: 14px; /* Slightly smaller than standard 16px looks more refined */
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+    color: rgba(255, 255, 255, 0.7); /* Never pure white for body text */
+  }
+
+  /* METADATA: The "Blueprint" look */
+  .metadata, nav a, label, .text-xs {
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.15em; /* W I D E spacing */
+  }
+  /* Hide default cursor for custom cursor */
+  * {
+    cursor: none !important;
+  }
 }

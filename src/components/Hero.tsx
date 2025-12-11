@@ -39,7 +39,7 @@ export function Hero() {
     <section ref={targetRef} className="relative h-screen w-full overflow-hidden">
       <div className="absolute inset-0 z-10 flex items-center justify-center">
         <motion.h1 
-          className="font-headline text-[10rem] md:text-[18rem] lg:text-[24rem] text-foreground mix-blend-difference pointer-events-none"
+          className="font-headline text-[10rem] md:text-[18rem] lg:text-[24rem] text-foreground mix-blend-difference pointer-events-none tracking-wider"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}

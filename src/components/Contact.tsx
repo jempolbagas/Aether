@@ -49,8 +49,8 @@ export function Contact() {
         };
 
         toast({
-            title: "TRANSMISSION RECEIVED",
-            description: "Your commission request has been logged.",
+            title: "Request Received",
+            description: "Your inquiry has been received. Our directors will review it shortly.",
             duration: 5000,
         });
         
@@ -117,18 +117,6 @@ export function Contact() {
                                 ))}
                             </div>
                         </div>
-
-                        <div className="border-t border-neutral-800 pt-8">
-                            <h3 className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-4">
-                                // Direct Line
-                            </h3>
-                            <a
-                                href={`mailto:${contactInfo.email}`}
-                                className="font-headline text-2xl md:text-3xl text-neutral-200 hover:text-primary transition-colors duration-300"
-                            >
-                                {contactInfo.email}
-                            </a>
-                        </div>
                     </motion.div>
 
                     {/* Right Column: Inquiry Form */}
@@ -140,7 +128,7 @@ export function Contact() {
                         className="relative"
                     >
                          <h3 className="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-8 border-t border-neutral-800 pt-8">
-                            // Initiate Commission
+                            // Private Consultation
                         </h3>
 
                         <form onSubmit={handleSubmit} className="space-y-8">
@@ -189,6 +177,18 @@ export function Contact() {
                             </div>
 
                             <div className="space-y-2">
+                                <label htmlFor="referral" className="font-mono text-xs uppercase text-neutral-400">
+                                    Referral Code
+                                </label>
+                                <Input
+                                    id="referral"
+                                    name="referral"
+                                    placeholder="COORDINATES (OPTIONAL)"
+                                    className="bg-neutral-900 border-neutral-800 text-neutral-200 placeholder:text-neutral-700 focus:border-primary rounded-none h-12"
+                                />
+                            </div>
+
+                            <div className="space-y-2">
                                 <label htmlFor="vision" className="font-mono text-xs uppercase text-neutral-400">
                                     The Vision
                                 </label>
@@ -206,7 +206,7 @@ export function Contact() {
                                 size="lg"
                                 className="w-full bg-primary text-black hover:bg-white hover:text-black rounded-none h-14 font-mono uppercase tracking-widest text-sm"
                             >
-                                Initiate Commission
+                                TRANSMIT
                             </Button>
                         </form>
                     </motion.div>
