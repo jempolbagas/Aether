@@ -121,7 +121,7 @@ function Card({ project }: { project: Project }) {
             {/* Bottom: Title & Details */}
             <div className="space-y-6 z-10 max-w-4xl">
                 <div>
-                    <h3 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium uppercase tracking-tighter leading-[0.9] mb-4 text-white">
+                    <h3 className="font-headline text-5xl md:text-7xl lg:text-8xl font-medium uppercase tracking-tighter leading-[0.95] mb-4 text-white">
                         {project.title}
                     </h3>
                     <p className="font-mono text-xs md:text-sm text-accent uppercase tracking-[0.2em] text-white/60">
@@ -132,14 +132,7 @@ function Card({ project }: { project: Project }) {
                 {/* Decorative Line */}
                 <div className="h-[1px] w-24 bg-white/30" />
 
-                <div className="flex flex-col md:flex-row gap-8 md:gap-12 md:items-end">
-                    <p className="font-sans text-lg md:text-xl leading-relaxed text-white/80 max-w-xl">
-                        {project.description}
-                    </p>
-                    <p className="font-serif text-lg md:text-xl text-white/40 italic shrink-0">
-                        "{project.lore}"
-                    </p>
-                </div>
+                {/* Description and lore hidden per requirements */}
             </div>
         </div>
     </div>
