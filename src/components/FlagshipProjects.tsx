@@ -3,24 +3,25 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { projects, Project } from '@/lib/data';
-import { useIsMobile } from '@/hooks/use-mobile';
 import Link from 'next/link';
 
 const MAX_SCROLL_OFFSET = '-92%';
 
 export function FlagshipProjects() {
   const targetRef = useRef<HTMLDivElement | null>(null);
-  const isMobile = useIsMobile();
+
+  // Note: useScroll will still attach logic, but it won't affect the layout
+  // when the element is hidden or not scrolling.
   const { scrollYProgress } = useScroll({
     target: targetRef,
   });
 
   const x = useTransform(scrollYProgress, [0, 1], ['0%', MAX_SCROLL_OFFSET]);
 
-  // MOBILE: Standard Vertical Layout
-  if (isMobile) {
-    return (
-      <section className="bg-[#050505] text-white flex flex-col gap-8 py-8">
+  return (
+    <>
+      {/* MOBILE: Standard Vertical Layout - Hidden on Desktop */}
+      <section className="block md:hidden bg-[#050505] text-white flex flex-col gap-8 py-8">
         {projects.map((project) => (
           <div key={project.id} className="px-4">
              <Link href={`/work/${project.slug}`}>
@@ -29,33 +30,31 @@ export function FlagshipProjects() {
           </div>
         ))}
       </section>
-    );
-  }
 
-  // DESKTOP: Horizontal Sticky Scroll
-  return (
-    <section ref={targetRef} className="relative h-[500vh] bg-[#050505] text-white">
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        
-        {/* Horizontal Track */}
-        <motion.div style={{ x }} className="flex gap-40 px-20">
-          {projects.map((project) => (
-            <Link key={project.id} href={`/work/${project.slug}`}>
-                <Card project={project} />
-            </Link>
-          ))}
-        </motion.div>
+      {/* DESKTOP: Horizontal Sticky Scroll - Hidden on Mobile */}
+      <section ref={targetRef} className="hidden md:block relative h-[500vh] bg-[#050505] text-white">
+        <div className="sticky top-0 flex h-screen items-center overflow-hidden">
 
-        {/* Progress Bar */}
-        <div className="absolute bottom-12 left-12 right-12 h-[1px] bg-white/10">
-            <motion.div 
-                style={{ scaleX: scrollYProgress, transformOrigin: "left" }}
-                className="h-full w-full bg-white/50" 
-            />
+          {/* Horizontal Track */}
+          <motion.div style={{ x }} className="flex gap-40 px-20">
+            {projects.map((project) => (
+              <Link key={project.id} href={`/work/${project.slug}`}>
+                  <Card project={project} />
+              </Link>
+            ))}
+          </motion.div>
+
+          {/* Progress Bar */}
+          <div className="absolute bottom-12 left-12 right-12 h-[1px] bg-white/10">
+              <motion.div
+                  style={{ scaleX: scrollYProgress, transformOrigin: "left" }}
+                  className="h-full w-full bg-white/50"
+              />
+          </div>
+
         </div>
-
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 
