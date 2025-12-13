@@ -29,21 +29,14 @@ export function CustomCursor() {
       opacity.set(0);
     };
 
-    const handleMouseEnter = () => {
-       // Optional: could make it visible immediately, or wait for move
-       // opacity.set(1);
-    };
-
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseleave", handleMouseLeave);
-    document.addEventListener("mouseenter", handleMouseEnter);
 
     return () => {
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseleave", handleMouseLeave);
-      document.removeEventListener("mouseenter", handleMouseEnter);
     };
-  }, [cursorX, cursorY, opacity]);
+  }, []);
 
   return (
     <motion.div
