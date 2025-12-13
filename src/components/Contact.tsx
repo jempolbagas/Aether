@@ -38,15 +38,19 @@ const staggerContainer = {
 export function Contact() {
     const { toast } = useToast();
     const [topography, setTopography] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
+        setIsSubmitting(true);
         const form = e.target as HTMLFormElement;
         const formData = new FormData(form);
         const data = {
             ...Object.fromEntries(formData.entries()),
             topography
         };
+
+        await new Promise(resolve => setTimeout(resolve, 1500));
 
         toast({
             title: "Request Received",
@@ -56,6 +60,7 @@ export function Contact() {
         
         form.reset();
         setTopography("");
+        setIsSubmitting(false);
     };
 
     return (
@@ -204,9 +209,10 @@ export function Contact() {
                             <Button
                                 type="submit"
                                 size="lg"
+                                isLoading={isSubmitting}
                                 className="w-full bg-primary text-black hover:bg-white hover:text-black rounded-none h-14 font-mono uppercase tracking-widest text-sm"
                             >
-                                TRANSMIT
+                                {isSubmitting ? "TRANSMITTING..." : "TRANSMIT"}
                             </Button>
                         </form>
                     </motion.div>
