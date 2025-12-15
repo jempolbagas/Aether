@@ -188,7 +188,7 @@ export function Contact() {
                                 <Input
                                     id="referral"
                                     name="referral"
-                                    placeholder="COORDINATES (OPTIONAL)"
+                                    placeholder="REFERRAL CODE (OPTIONAL)"
                                     className="bg-neutral-900 border-neutral-800 text-neutral-200 placeholder:text-neutral-700 focus:border-primary rounded-none h-12"
                                 />
                             </div>
