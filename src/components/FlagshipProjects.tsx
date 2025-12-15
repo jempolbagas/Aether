@@ -40,7 +40,11 @@ export function FlagshipProjects() {
         {/* Horizontal Track */}
         <motion.div style={{ x }} className="flex gap-40 px-20">
           {projects.map((project) => (
-            <Link key={project.id} href={`/work/${project.slug}`}>
+            <Link
+              key={project.id}
+              href={`/work/${project.slug}`}
+              className="block outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-black rounded-none"
+            >
                 <Card project={project} />
             </Link>
           ))}
